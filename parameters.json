@@ -12,10 +12,10 @@
             "value": "Southeast Asia"
         },
         "hostingPlanName": {
-            "value": "ASP-SiteCoreXPScale-8bfb"
+            "value": "ASP-demositecore-9291"
         },
         "serverFarmResourceGroup": {
-            "value": "SiteCore_XP_Scale"
+            "value": "demositecore"
         },
         "alwaysOn": {
             "value": false
@@ -43,6 +43,12 @@
         },
         "netFrameworkVersion": {
             "value": "v6.0"
+        },
+        "repoUrl": {
+            "value": "https://github.com/taminhhieu31gl/SiteCore_XP_Azure"
+        },
+        "branch": {
+            "value": "main"
         }
     }
 }

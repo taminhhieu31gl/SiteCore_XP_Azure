@@ -43,6 +43,12 @@
         },
         "netFrameworkVersion": {
             "type": "string"
+        },
+        "repoUrl": {
+            "type": "string"
+        },
+        "branch": {
+            "type": "string"
         }
     },
     "variables": {},
@@ -52,9 +58,7 @@
             "name": "[parameters('name')]",
             "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
-            "tags": {
-                "demo": "sitecore"
-            },
+            "tags": {},
             "dependsOn": [
                 "microsoft.insights/components/demositecore",
                 "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
@@ -93,7 +97,39 @@
                 "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
                 "clientAffinityEnabled": true,
                 "virtualNetworkSubnetId": null
-            }
+            },
+            "resources": [
+                {
+                    "type": "sourcecontrols",
+                    "name": "web",
+                    "apiVersion": "2020-12-01",
+                    "properties": {
+                        "RepoUrl": "[parameters('repoUrl')]",
+                        "branch": "[parameters('branch')]",
+                        "IsManualIntegration": false,
+                        "deploymentRollbackEnabled": false,
+                        "isMercurial": false,
+                        "isGitHubAction": true,
+                        "gitHubActionConfiguration": {
+                            "generateWorkflowFile": true,
+                            "workflowSettings": {
+                                "appType": "webapp",
+                                "publishType": "code",
+                                "os": "windows",
+                                "runtimeStack": "dotnet",
+                                "workflowApiVersion": "2020-12-01",
+                                "slotName": "production",
+                                "variables": {
+                                    "runtimeVersion": "6.0.x"
+                                }
+                            }
+                        }
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
+                    ]
+                }
+            ]
         },
         {
             "apiVersion": "2018-11-01",
@@ -101,9 +137,7 @@
             "type": "Microsoft.Web/serverfarms",
             "location": "[parameters('location')]",
             "kind": "",
-            "tags": {
-                "demo": "sitecore"
-            },
+            "tags": {},
             "dependsOn": [],
             "properties": {
                 "name": "[parameters('hostingPlanName')]",
@@ -122,9 +156,7 @@
             "name": "demositecore",
             "type": "microsoft.insights/components",
             "location": "southeastasia",
-            "tags": {
-                "demo": "sitecore"
-            },
+            "tags": {},
             "dependsOn": [
                 "newWorkspaceTemplate"
             ],
