@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "subscriptionId": {
+            "value": "095eb3b1-0317-4e50-8340-d4d8345bc143"
+        },
+        "name": {
+            "value": "demositecore"
+        },
+        "location": {
+            "value": "Southeast Asia"
+        },
+        "hostingPlanName": {
+            "value": "ASP-SiteCoreXPScale-8bfb"
+        },
+        "serverFarmResourceGroup": {
+            "value": "SiteCore_XP_Scale"
+        },
+        "alwaysOn": {
+            "value": false
+        },
+        "sku": {
+            "value": "Free"
+        },
+        "skuCode": {
+            "value": "F1"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "workerSizeId": {
+            "value": "0"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "currentStack": {
+            "value": "dotnet"
+        },
+        "phpVersion": {
+            "value": "OFF"
+        },
+        "netFrameworkVersion": {
+            "value": "v6.0"
+        }
+    }
+}
